@@ -1,9 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import {
-  addContactThunk,
-  deleteContactThunk,
-  fetchContactsThunk,
-} from './operations';
+import { fetchContactsThunk } from './operations';
 
 const initialState = {
   contacts: [],
@@ -27,14 +23,6 @@ const phoneBookSlice = createSlice({
       .addCase(fetchContactsThunk.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.error = payload;
-      })
-      .addCase(deleteContactThunk.fulfilled, (state, { payload }) => {
-        state.contacts = state.contacts.filter(
-          contact => contact.id !== payload
-        );
-      })
-      .addCase(addContactThunk.fulfilled, (state, { payload }) => {
-        state.contacts.push(payload);
       });
   },
 
@@ -42,12 +30,6 @@ const phoneBookSlice = createSlice({
     changeFilter: (state, { payload }) => {
       state.filter = payload;
     },
-    // deleteContact: (state, { payload }) => {
-    //   state.contacts = state.contacts.filter(contact => contact.id !== payload);
-    // },
-    // addContact: (state, { payload }) => {
-    //   state.contacts.push(payload);
-    // },
   },
 });
 
