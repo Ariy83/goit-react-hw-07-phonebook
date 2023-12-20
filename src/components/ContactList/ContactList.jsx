@@ -10,7 +10,7 @@ export const ContactList = ({contacts=[]}) => {
             <ContactItem id={nanoid()} key={contact.name}
               {...contact}
               name={contact.name}
-              number={contact.number}
+              phone={contact.phone}
             >
               <StyledButton >Add contact</StyledButton>
             </ContactItem>

@@ -19,12 +19,12 @@ export const App = () => {
   }, [dispatch])
   
   
-  const handleAddContact = ({ name, number }) => {
+  const handleAddContact = ({ name, phone }) => {
     if (contacts.find(contact => contact.name === name)) {
       window.alert(`${name} is already in contacts`)
       return
     }
-    const newContact = {  name, number, }
+    const newContact = { name, phone, }
     dispatch(addContactThunk(newContact))
   }
 

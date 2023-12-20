@@ -2,9 +2,11 @@ import { createSlice } from '@reduxjs/toolkit';
 import { fetchContactsThunk } from './operations';
 
 const initialState = {
-  contacts: [],
-  isLoading: false,
-  error: null,
+  contacts: {
+    items: [],
+    isLoading: false,
+    error: null,
+  },
   filter: '',
 };
 
@@ -14,15 +16,15 @@ const phoneBookSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(fetchContactsThunk.pending, state => {
-        state.isLoading = true;
+        state.contacts.isLoading = true;
       })
       .addCase(fetchContactsThunk.fulfilled, (state, { payload }) => {
-        state.contacts = payload;
-        state.isLoading = false;
+        state.contacts.items = payload;
+        state.contacts.isLoading = false;
       })
       .addCase(fetchContactsThunk.rejected, (state, { payload }) => {
-        state.isLoading = false;
-        state.error = payload;
+        state.contacts.isLoading = false;
+        state.contacts.error = payload;
       });
   },
 
